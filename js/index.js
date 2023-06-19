@@ -94,19 +94,18 @@ function renderButtons() {
 
 function renderPrice() {
   let listPrice = document.querySelectorAll('.price>ul>li');
-  // let listButton = document.querySelectorAll('.controls>ul>li>button');
+  let listButton = document.querySelectorAll('.controls>ul>li>button');
   let price = 10;
-  // for (i )
-  if(state.pepperoni){listPrice[0].style.display ='block'; price+=1}
-  else{listPrice[0].style.display ='none'};
-  if(state.mushrooms){listPrice[1].style.display ='block';price+=1}
-  else{listPrice[1].style.display ='none'};
-  if(state.greenPeppers){listPrice[2].style.display ='block';price+=1}
-  else{listPrice[2].style.display ='none'};
-  if(state.whiteSauce){listPrice[3].style.display ='block';price+=3}
-  else{listPrice[3].style.display ='none'};
-  if(state.glutenFreeCrust){listPrice[4].style.display ='block';price+=5}
-  else{listPrice[4].style.display ='none'};
+   for (i =0;i<listButton.length;i++){
+    if(listButton[i].classList.contains('active')){
+      listPrice[i].style.display = 'block';
+      if ((listButton[i].classList.contains('btn-pepperoni'))||(listButton[i].classList.contains('btn-mushrooms'))||(listButton[i].classList.contains('btn-green-peppers'))){price+=1}
+      else if(listButton[i].classList.contains('btn-sauce')){price+=3}
+      else if(listButton[i].classList.contains('btn-crust')){price+=5}
+    }
+    else{listPrice[i].style.display = 'none'}
+   }
+
   document.querySelector('.price>strong').innerHTML=`\$${price}`
 
   // Iteration 4: change the HTML of `<aside class="panel price">`
